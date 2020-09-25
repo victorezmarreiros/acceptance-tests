@@ -1,5 +1,5 @@
 from behave import *
-
+from time import sleep
 use_step_matcher('re')
 
 # Utilizando Regular Expressions para mapear os passos.
@@ -13,7 +13,9 @@ use_step_matcher('re')
 # O próprio Python interpreta a nossa RE como o segundo parametro que deve ser passado para a função, o 'link_id'.
 
 
-@when('I click on the link with id "(.*)"')  #
+@when('I click on the link with id "(.*)"')
 def step_impl(context, link_id):
     link = context.browser.find_element_by_id(link_id)
     link.click()
+    sleep(0.7)
+
