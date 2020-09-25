@@ -33,9 +33,9 @@ def add_post():
 
 @app.route('/post/<string:title>')
 def see_post(title):
-    global posts
-
-    for post in posts:
+    global posts                                            # Variável => title = 'tx'     Pivô => ?
+                                                            # posts = {['t': ''], ['t': ''], ['t': ''], ['t': ''], ['t': ''], ['t': 'tx'], ['t': ''], ['t': ''], ['t': ''], ['t': ''],  ['t': '']}
+    for post in posts:                                            #          1  ,       2   ,       3 ,        4 ,       5,          <6> ,          7 ,         8,       9,        10,           11
         if post['title'] == title:
             return render_template('post.html', post=post)
 
