@@ -4,12 +4,14 @@
 
 </head>
 <body>
-{% if post %}
-    <h1>{{ post['title'] }}</h1>
+<div>
+    {% if post %}
+        <h1>{{ post['title'] }}</h1>
 
-    <p>{{ post['content'] }}</p>
-{% else %}
-    <h1>Post not found!</h1>
-{% endif %}
+        <p>{{ post['content'] }}</p>
+    {% else %}
+        <h1>Post not found!</h1>
+    {% endif %}
+</div>
 </body>
 </html>
