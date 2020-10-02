@@ -1,9 +1,7 @@
 from behave import *
-from time import sleep
-
-from selenium.webdriver.common.by import By
 
 from tests.acceptance.page_models.base_page import BasePage
+from tests.acceptance.page_models.new_posts_page import NewPostPage
 
 use_step_matcher('re')
 
@@ -30,4 +28,14 @@ def step_impl(context, link_text):
     else:
         raise RuntimeError()
 
-    sleep(0.7)
+
+@when('I enter "(.*)" in the "(.*)" field')
+def step_impl(context, content, field_name):
+    page = NewPostPage(context.driver)
+    page.form_field(field_name).send_keys(content)
+
+
+@when('I press the submit button')
+def step_impl(context):
+    page = NewPostPage(context.driver)
+    page.submit_button.click()
