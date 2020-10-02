@@ -3,13 +3,11 @@ Feature: Test navigation between pages
   That can span a few lines
 
   Scenario: Homepage can go to the Blog
-    Given I open the browser
-    And I am on the homepage
-    When I click on the link with id "blog-link"
+    Given I am on the homepage
+    When I click on "Go to blog" link
     Then I am on the blog page
 
   Scenario: Blog can go to Homepage
-    Given I open the browser
-    And I am on the blog page
-    When I click on the link with id "home-link"
+    Given I am on the blog page
+    When I click on "Go to home" link
     Then I am on the homepage

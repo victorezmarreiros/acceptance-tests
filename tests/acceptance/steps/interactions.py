@@ -1,5 +1,10 @@
 from behave import *
 from time import sleep
+
+from selenium.webdriver.common.by import By
+
+from tests.acceptance.page_models.base_page import BasePage
+
 use_step_matcher('re')
 
 # Utilizando Regular Expressions para mapear os passos.
@@ -13,9 +18,16 @@ use_step_matcher('re')
 # O próprio Python interpreta a nossa RE como o segundo parametro que deve ser passado para a função, o 'link_id'.
 
 
-@when('I click on the link with id "(.*)"')
-def step_impl(context, link_id):
-    link = context.browser.find_element_by_id(link_id)
-    link.click()
-    sleep(0.7)
+@when('I click on "(.*)" link')
+def step_impl(context, link_text):
+    page = BasePage(context.driver)
+    links = page.navigation
 
+    matching_links = [link for link in links if link.text == link_text]
+
+    if len(matching_links) > 0:
+        matching_links[0].click()
+    else:
+        raise RuntimeError()
+
+    sleep(0.7)
